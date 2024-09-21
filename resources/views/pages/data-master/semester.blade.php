@@ -53,12 +53,14 @@
                                                 <td>Semester {{ $semester->semester }}</td>
                                                 <td>
                                                     @if ($semester->status == 1)
-                                                        <span class="bg-success rounded" style="width: 15px; height: 15px; display: inline-block;"></span>
+                                                        <span class="bg-success rounded"
+                                                            style="width: 15px; height: 15px; display: inline-block;"></span>
                                                     @else
-                                                        <span class="bg-danger rounded" style="width: 15px; height: 15px; display: inline-block;"></span>
+                                                        <span class="bg-danger rounded"
+                                                            style="width: 15px; height: 15px; display: inline-block;"></span>
                                                     @endif
                                                 </td>
-                                                
+
                                                 <td>
                                                     <form id="delete-form-{{ $semester->id }}"
                                                         action="{{ route('semester.destroy', $semester->id) }}"
@@ -209,8 +211,13 @@
                     }
                 });
             });
+            $('#tambahModal').on('hidden.bs.modal', function() {
+                console.log('ets');
 
-
+                $('#tambahForm')[0].reset();
+                $('#semesterError').text('');
+                $('#semester').removeClass('is-invalid');
+            });
         });
 
         function confirmDelete(id) {
@@ -243,13 +250,5 @@
                 }
             });
         }
-
-        $('#tambahModal').on('hidden.bs.modal', function() {
-            console.log('ets');
-            
-            $('#tambahForm')[0].reset();
-            $('#semesterError').text('');
-            $('#semester').removeClass('is-invalid');
-        });
     </script>
 @endsection

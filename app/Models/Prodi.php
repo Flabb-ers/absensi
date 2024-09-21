@@ -11,6 +11,7 @@ class Prodi extends Model
     protected $guarded = ['id'];
 
     public function kelas(){
+
         return $this->hasMany(Kelas::class);
     }
 }

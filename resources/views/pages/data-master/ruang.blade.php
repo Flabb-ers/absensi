@@ -111,144 +111,144 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        });
+            //TAMBAH
+            $('#tambahForm').submit(function(e) {
+                e.preventDefault();
 
-        //TAMBAH
-        $('#tambahForm').submit(function(e) {
-            e.preventDefault();
+                let nama = $('#ruangan').val();
 
-            let nama = $('#ruangan').val();
+                $('#namaError').text('').removeClass('is-invalid');
 
-            $('#namaError').text('').removeClass('is-invalid');
+                $.ajax({
+                    url: '{{ route('ruangan.store') }}',
+                    method: 'POST',
+                    data: {
+                        nama: nama
+                    },
+                    success: function(response) {
+                        $('#tambahModal').modal('hide');
+                        $('#tambahForm')[0].reset();
 
-            $.ajax({
-                url: '{{ route('ruangan.store') }}',
-                method: 'POST',
-                data: {
-                    nama: nama
-                },
-                success: function(response) {
-                    $('#tambahModal').modal('hide');
-                    $('#tambahForm')[0].reset();
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses!',
-                        text: response.success,
-                        confirmButtonText: 'Oke'
-                    }).then(() => {
-                        window.location.href = '/presensi/data-master/ruangan';
-                    });
-                },
-                error: function(response) {
-                    if (response.status === 422) {
-                        const errors = response.responseJSON.errors;
-                        if (errors.nama) {
-                            $("#ruangan").addClass('is-invalid');
-                            $('#namaError').text(errors.nama[0]);
-                        }
-                    } else {
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Terjadi kesalahan. Silakan coba lagi.',
+                            icon: 'success',
+                            title: 'Sukses!',
+                            text: response.success,
+                            confirmButtonText: 'Oke'
+                        }).then(() => {
+                            window.location.href = '/presensi/data-master/ruangan';
                         });
-                    }
-                }
-            });
-        });
-
-        // EDIT
-        $('.edit-btn').click(function() {
-            let id = $(this).data('id');
-            let nama = $(this).data('nama');
-
-            $('#edit-id').val(id);
-            $('#edit-ruangan').val(nama);
-            $('#edit-namaError').text('').removeClass('is-invalid');
-        });
-
-        $('#editForm').submit(function(e) {
-            e.preventDefault();
-
-            let id = $('#edit-id').val();
-            let nama = $('#edit-ruangan').val();
-            $('#edit-namaError').text('').removeClass('is-invalid');
-
-            $.ajax({
-                url: '{{ route('ruangan.update', ':id') }}'.replace(':id', id),
-                method: 'PUT',
-                data: {
-                    nama: nama
-                },
-                success: function(response) {
-                    $('#editModal').modal('hide');
-                    $('#editForm')[0].reset();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses!',
-                        text: response.success,
-                        confirmButtonText: 'Oke'
-                    }).then(() => {
-                        window.location.reload();
-                    });
-                },
-                error: function(response) {
-                    if (response.status === 422) {
-                        const errors = response.responseJSON.errors;
-                        if (errors.nama) {
-                            $("#edit-ruangan").addClass('is-invalid');
-                            $('#edit-namaError').text(errors.nama[0]);
-                        }
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Terjadi kesalahan. Silakan coba lagi.',
-                        });
-                    }
-                }
-            });
-        });
-
-        // HAPUS
-        $('.delete-btn').click(function() {
-            let id = $(this).data('id');
-
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Data ruangan ini akan dihapus!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '{{ route('ruangan.destroy', ':id') }}'.replace(':id', id),
-                        method: 'DELETE',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            Swal.fire(
-                                'Dihapus!',
-                                response.success,
-                                'success'
-                            ).then(() => {
-                                window.location.href = '/presensi/data-master/ruangan';
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            const errors = response.responseJSON.errors;
+                            if (errors.nama) {
+                                $("#ruangan").addClass('is-invalid');
+                                $('#namaError').text(errors.nama[0]);
+                            }
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Terjadi kesalahan. Silakan coba lagi.',
                             });
-                        },
-                        error: function() {
-                            Swal.fire(
-                                'Oops...',
-                                'Terjadi kesalahan saat menghapus data.',
-                                'error'
-                            );
                         }
-                    });
-                }
+                    }
+                });
+            });
+
+            // EDIT
+            $('.edit-btn').click(function() {
+                let id = $(this).data('id');
+                let nama = $(this).data('nama');
+
+                $('#edit-id').val(id);
+                $('#edit-ruangan').val(nama);
+                $('#edit-namaError').text('').removeClass('is-invalid');
+            });
+
+            $('#editForm').submit(function(e) {
+                e.preventDefault();
+
+                let id = $('#edit-id').val();
+                let nama = $('#edit-ruangan').val();
+                $('#edit-namaError').text('').removeClass('is-invalid');
+
+                $.ajax({
+                    url: '{{ route('ruangan.update', ':id') }}'.replace(':id', id),
+                    method: 'PUT',
+                    data: {
+                        nama: nama
+                    },
+                    success: function(response) {
+                        $('#editModal').modal('hide');
+                        $('#editForm')[0].reset();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses!',
+                            text: response.success,
+                            confirmButtonText: 'Oke'
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            const errors = response.responseJSON.errors;
+                            if (errors.nama) {
+                                $("#edit-ruangan").addClass('is-invalid');
+                                $('#edit-namaError').text(errors.nama[0]);
+                            }
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Terjadi kesalahan. Silakan coba lagi.',
+                            });
+                        }
+                    }
+                });
+            });
+
+            // HAPUS
+            $('.delete-btn').click(function() {
+                let id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Data ruangan ini akan dihapus!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('ruangan.destroy', ':id') }}'.replace(':id', id),
+                            method: 'DELETE',
+                            data: {
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    'Dihapus!',
+                                    response.success,
+                                    'success'
+                                ).then(() => {
+                                    window.location.href =
+                                        '/presensi/data-master/ruangan';
+                                });
+                            },
+                            error: function() {
+                                Swal.fire(
+                                    'Oops...',
+                                    'Terjadi kesalahan saat menghapus data.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

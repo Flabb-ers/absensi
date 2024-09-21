@@ -189,7 +189,6 @@
                     jenjang: jenjang
                 },
                 success: function(response) {
-                    // Tambahkan row baru ke tabel
                     $('tbody').append(`
                 <tr>
                     <td>${$('tbody tr').length + 1}</td>
