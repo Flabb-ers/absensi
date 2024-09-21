@@ -66,7 +66,7 @@
                         <div class="mb-3">
                             <label for="ruangan" class="form-label">Nama Ruangan</label>
                             <input type="text" class="form-control" id="ruangan" name="nama"
-                                placeholder="Kode prodi" requiredss>
+                                placeholder="Nama Ruangan" requiredss>
                             <div id="namaError" class="invalid-feedback"></div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">
