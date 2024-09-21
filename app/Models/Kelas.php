@@ -11,4 +11,12 @@ class Kelas extends Model
 
     protected $guarded = ['id'];
 
+    public function prodi()
+    {
+        return  $this->belongsTo(Prodi::class);
+    }
+    public function semester()
+    {
+        return  $this->belongsTo(Semester::class);
+    }
 }

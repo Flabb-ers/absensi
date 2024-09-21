@@ -24,7 +24,7 @@
                                         @forelse ($ruangans as $ruangan)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $ruangan->nama }}</td>
+                                                <td>{{ strtoupper($ruangan->nama) }}</td>
                                                 <td>
                                                     <button class="btn btn-warning btn-sm edit-btn"
                                                         data-id="{{ $ruangan->id }}" data-nama="{{ $ruangan->nama }}"

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Prodi;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -11,8 +13,10 @@ class KelasController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        return view('pages.data-master.daftar-kelas');
+    {   $prodis = Prodi::all();
+        $semesters = Semester::all();
+        $kelass = Kelas::all();
+        return view('pages.data-master.daftar-kelas',compact('prodis','semesters','kelass'));
     }
 
     /**
@@ -20,7 +24,17 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return response()->json([
+        //     'success' => 'Kelas berhasil ditambahkan!',
+        //     'kelas' => [
+        //         'id' => 1, 
+        //         'nama_kelas' => 'TI1A',
+        //         'semester' => [
+        //             'semester' => 1
+        //         ],
+        //         'jenis_kelas' => 'Reguler'
+        //     ]
+        // ]);
     }
 
 

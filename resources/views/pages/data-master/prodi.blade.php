@@ -189,6 +189,34 @@
                     jenjang: jenjang
                 },
                 success: function(response) {
+                    // Tambahkan row baru ke tabel
+                    $('tbody').append(`
+                <tr>
+                    <td>${$('tbody tr').length + 1}</td>
+                    <td>${response.prodi.kode_prodi}</td>
+                    <td>${response.prodi.nama_prodi}</td>
+                    <td>${response.prodi.singkatan}</td>
+                    <td>${response.prodi.jenjang}</td>
+                    <td>
+                       <button class="btn btn-warning btn-sm edit-btn"
+                    data-id="${response.prodi.id}" 
+                    data-kode="${response.prodi.kode_prodi}"
+                    data-nama="${response.prodi.nama_prodi}"
+                    data-singkatan="${response.prodi.singkatan}"
+                    data-jenjang="${response.prodi.jenjang}" 
+                    data-toggle="modal" 
+                    data-target="#editModal">Edit</button>
+                <form id="delete-form-${response.prodi.id}" action="{{ route('prodi.destroy', '') }}/${response.prodi.id}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('${response.prodi.id}')">
+                        <span class="mdi mdi-delete"></span> Hapus
+                    </button>
+                        </form>
+                    </td>
+                </tr>
+            `);
+                    // Tutup modal dan reset form
                     $('#tambahModal').modal('hide');
                     $('#tambahForm')[0].reset();
 
@@ -197,8 +225,6 @@
                         title: 'Sukses!',
                         text: response.success,
                         confirmButtonText: 'Oke'
-                    }).then(() => {
-                        window.location.href = '/presensi/data-master/prodi';
                     });
                 },
                 error: function(response) {
@@ -253,6 +279,7 @@
             $('#editModal').modal('show');
         });
 
+        
         //edit form
         $('#editForm').submit(function(e) {
             e.preventDefault();
@@ -338,7 +365,6 @@
             $('#edit-namaError').text('');
             $('#edit-singkatanError').text('');
             $('#edit-jenjangError').text('');
-
             $('#editForm')[0].reset();
         });
 

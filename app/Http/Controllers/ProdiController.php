@@ -51,23 +51,29 @@ class ProdiController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        $edit = Prodi::findOrFail($id);
-        $validateData = $request->validate([
-            'kode_prodi' => 'required',
-            'nama_prodi' => 'required',
-            'singkatan' => 'required',
-            'jenjang' => 'required'
-        ], [
-            'kode_prodi.required' => 'Kode prodi harus diisi',
-            'nama_prodi.required' => 'Nama prodi harus diisi',
-            'singkatan.required' => 'Singkatan harus diisi',
-            'jenjang.required' => 'Jenjang harus diisi'
-        ]);
+{
+    $edit = Prodi::findOrFail($id);
+    $validateData = $request->validate([
+        'kode_prodi' => 'required',
+        'nama_prodi' => 'required',
+        'singkatan' => 'required',
+        'jenjang' => 'required'
+    ], [
+        'kode_prodi.required' => 'Kode prodi harus diisi',
+        'nama_prodi.required' => 'Nama prodi harus diisi',
+        'singkatan.required' => 'Singkatan harus diisi',
+        'jenjang.required' => 'Jenjang harus diisi'
+    ]);
 
-        $edit->update($validateData);
-        return response()->json(['success' => 'Item updated successfully!']);
-    }
+    // Update data prodi
+    $edit->update($validateData);
+
+    // Ambil data prodi yang sudah diperbarui
+    $prodi = Prodi::find($id);
+
+    return response()->json(['success' => 'Item updated successfully!', 'prodi' => $prodi]);
+}
+
 
     /**
      * Remove the specified resource from storage.

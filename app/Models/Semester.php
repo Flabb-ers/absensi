@@ -10,4 +10,8 @@ class Semester extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function kelas(){
+        return $this->hasMany(Kelas::class);
+    }
 }
