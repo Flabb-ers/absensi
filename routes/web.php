@@ -6,6 +6,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\TahunAkademikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +44,8 @@ Route::prefix('presensi/data-master')->group(function () {
     // RUANGAN
     Route::resource('/ruangan', RuanganController::class);
     
-
-
-    Route::get('/tahun-ajaran', function () {
-        return view('pages.data-umum.tahun-ajaran');
-    });
+    //TAHUN AKADEMIK 
+    Route::resource('/tahun-akademik',TahunAkademikController::class);
 
     Route::get('/mata-kuliah', function () {
         return view('pages.data-umum.mata-kuliah');

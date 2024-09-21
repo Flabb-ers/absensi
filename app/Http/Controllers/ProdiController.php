@@ -71,7 +71,7 @@ class ProdiController extends Controller
     // Ambil data prodi yang sudah diperbarui
     $prodi = Prodi::find($id);
 
-    return response()->json(['success' => 'Item updated successfully!', 'prodi' => $prodi]);
+    return response()->json(['success' => 'Program studi berhasil diupdate', 'prodi' => $prodi]);
 }
 
 

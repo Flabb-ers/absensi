@@ -145,7 +145,7 @@
                             text: response.success,
                             confirmButtonText: 'Oke'
                         }).then(() => {
-                            window.location.href = '/presensi/data-master/semester';
+                            window.location.reload();
                         });
                     },
                     error: function(response) {
@@ -189,7 +189,7 @@
                                     Swal.fire('Peringatan!', response.warning,
                                             'warning')
                                         .then(() => {
-                                            location
+                                            window.location
                                                 .reload();
                                         });
                                 }
@@ -241,7 +241,7 @@
                         })
                         .then(response => {
                             Swal.fire('Terhapus!', response.data.success, 'success').then(() => {
-                                location.reload();
+                                window.location.reload();
                             });
                         })
                         .catch(error => {

@@ -26,7 +26,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ strtoupper($ruangan->nama) }}</td>
                                                 <td>
-                                                    <button class="btn btn-warning btn-sm edit-btn"
+                                                    <button class="btn btn-primary btn-sm edit-btn"
                                                         data-id="{{ $ruangan->id }}" data-nama="{{ $ruangan->nama }}"
                                                         data-bs-toggle="modal" data-bs-target="#editModal">
                                                         <span class="mdi mdi-pencil"></span> Edit
@@ -135,7 +135,7 @@
                             text: response.success,
                             confirmButtonText: 'Oke'
                         }).then(() => {
-                            window.location.href = '/presensi/data-master/ruangan';
+                            location.reload();
                         });
                     },
                     error: function(response) {
@@ -235,8 +235,7 @@
                                     response.success,
                                     'success'
                                 ).then(() => {
-                                    window.location.href =
-                                        '/presensi/data-master/ruangan';
+                                    window.location.reload();
                                 });
                             },
                             error: function() {

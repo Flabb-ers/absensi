@@ -24,7 +24,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="kelasTable">
-                                        @foreach ($kelass as $kelas)
+                                        @forelse ($kelass as $kelas)
                                             <tr id="row_{{ $kelas->id }}">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $kelas->nama_kelas }}</td>
@@ -45,7 +45,11 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">Kelas belum ditambahkan</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -96,7 +100,7 @@
                             </select>
                             <div class="invalid-feedback" id="errorJenisKelas"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <span class="mdi mdi-content-save"></span> Simpan</button>
                     </form>
                 </div>
@@ -146,7 +150,7 @@
                             </select>
                             <div class="invalid-feedback" id="editErrorJenisKelas"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             <span class="mdi mdi-content-save"></span> Simpan Perubahan</button>
                     </form>
                 </div>
@@ -186,25 +190,6 @@
                         jenis_kelas: jenisKelas
                     },
                     success: function(response) {
-                        $('#kelasTable').append(`
-                    <tr id="row_${response.kelas.id}">
-    <td>${response.kelas.id}</td>
-    <td>${response.kelas.nama_kelas}</td>
-    <td>${response.kelas.nama_prodi.nama_prodi}</td>
-    <td>Semester ${response.kelas.semester.semester}</td>
-    <td>${response.kelas.jenis_kelas}</td>
-    <td>
-        <a href="#" class="btn btn-primary btn-sm editKelas" data-id="${response.kelas.id}">
-            <span class="mdi mdi-pencil"></span> Edit
-        </a>
-        <button class="btn btn-danger btn-sm deleteKelas" data-id="${response.kelas.id}">
-            <span class="mdi mdi-delete"></span> Hapus
-        </button>
-    </td>
-</tr>
-
-                `);
-
                         $('#tambahModal').modal('hide');
                         $('#tambahForm')[0].reset();
 
@@ -213,6 +198,8 @@
                             title: 'Sukses!',
                             text: response.success,
                             confirmButtonText: 'Oke'
+                        }).then(() => {
+                            location.reload();
                         });
                     },
                     error: function(response) {
@@ -281,23 +268,6 @@
                         jenis_kelas: jenisKelas
                     },
                     success: function(response) {
-                        // Update row dengan data baru
-                        $('#row_' + response.kelas.id).html(`
-                    <td>${response.kelas.id}</td>
-                    <td>${response.kelas.nama_kelas}</td>
-                    <td>${response.kelas.nama_prodi}</td>
-                    <td>Semester ${response.kelas.semester}</td>
-                    <td>${response.kelas.jenis_kelas}</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm editKelas" data-id="${response.kelas.id}">
-                            <span class="mdi mdi-pencil"></span> Edit
-                        </a>
-                        <button class="btn btn-danger btn-sm deleteKelas" data-id="${response.kelas.id}">
-                            <span class="mdi mdi-delete"></span> Hapus
-                        </button>
-                    </td>
-                `);
-
                         $('#editModal').modal('hide');
 
                         Swal.fire({
@@ -305,6 +275,8 @@
                             title: 'Sukses!',
                             text: response.success,
                             confirmButtonText: 'Oke'
+                        }).then(() => {
+                            location.reload();
                         });
                     },
                     error: function(response) {
@@ -360,6 +332,8 @@
                                     title: 'Terhapus!',
                                     text: response.success,
                                     confirmButtonText: 'Oke'
+                                }).then(() => {
+                                    location.reload();
                                 });
                             },
                             error: function(response) {
@@ -373,7 +347,15 @@
                     }
                 });
             });
-
+            $('#tambahModal').on('hidden.bs.modal', function() {
+                $('#tambahForm')[0].reset();
+                $('#namaProdi').removeClass('is-invalid');
+                $('#semester').removeClass('is-invalid');
+                $('#jenisKelas').removeClass('is-invalid');
+                $('#errorProdi').text('');
+                $('#errorSemester').text('');
+                $('#errorJenisKelas').text('');
+            });
         });
     </script>
 @endsection

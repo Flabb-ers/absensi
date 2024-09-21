@@ -49,17 +49,7 @@ class KelasController extends Controller
 
         return response()->json([
             'success' => 'Kelas berhasil ditambahkan!',
-            'kelas' => [
-                'id' => $kelas->id,
-                'nama_kelas' => $kelas->nama_kelas,
-                'jenis_kelas' => $kelas->jenis_kelas,
-                'nama_prodi' => [
-                    'nama_prodi' => $prodi->nama_prodi
-                ],
-                'semester' => [
-                    'semester' => $semester->semester
-                ]
-            ]
+            'kelas' => $kelas
         ]);
     }
 
@@ -81,7 +71,7 @@ class KelasController extends Controller
         $semester = Semester::findOrFail($request->id_semester);
 
         // Update kelas
-        $kelas->update([
+        $edited = $kelas->update([
             'id_prodi' => $request->id_prodi,
             'id_semester' => $request->id_semester,
             'jenis_kelas' => $request->jenis_kelas,
@@ -90,13 +80,7 @@ class KelasController extends Controller
 
         return response()->json([
             'success' => 'Kelas berhasil diperbarui!',
-            'kelas' => [
-                'id' => $kelas->id,
-                'nama_kelas' => $kelas->nama_kelas,
-                'jenis_kelas' => $kelas->jenis_kelas,
-                'nama_prodi' => $prodi->nama_prodi,
-                'semester' => $semester->semester,
-            ]
+            'kelas' => $edited
         ]);
     }
 

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Prodi;
 use App\Models\Semester;
+use App\Models\TahunAkademik;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -64,6 +65,19 @@ class DatabaseSeeder extends Seeder
         ]);
         Semester::create([
             'semester'=>8
+        ]);
+
+        TahunAkademik::create([
+            'tahun_akademik'=>'2024/2025'
+        ]);
+        TahunAkademik::create([
+            'tahun_akademik'=>'2024/2026'
+        ]);
+        TahunAkademik::create([
+            'tahun_akademik'=>'2024/2027'
+        ]);
+        TahunAkademik::create([
+            'tahun_akademik'=>'2024/2028'
         ]);
     }
 }
