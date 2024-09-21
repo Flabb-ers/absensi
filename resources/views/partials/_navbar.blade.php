@@ -31,8 +31,8 @@
                 <h1 class="welcome-text"><span class="text-black fw-bold">Mata Kuliah</span></h1>
                 @elseif(Request::is('presensi/data-master/semester'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Semester</span></h1>
-                @elseif(Request::is('data-umum/tahun-ajaran'))
-                <h1 class="welcome-text"><span class="text-black fw-bold">Tahun Ajaran</span></h1>
+                @elseif(Request::is('presensi/data-master/tahun-akademik'))
+                <h1 class="welcome-text"><span class="text-black fw-bold">Tahun Akademik</span></h1>
                 @elseif(Request::is('data-umum/kaprodi'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Kaprodi</span></h1>
                 @elseif(Request::is('data-umum/wakil-direktur'))
