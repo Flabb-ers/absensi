@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RuanganController;
@@ -30,6 +32,8 @@ Route::get("/dashboard", function () {
 });
 
 
+
+
 // Data Master
 Route::prefix('presensi/data-master')->group(function () {
     // DATA KELAS
@@ -46,6 +50,15 @@ Route::prefix('presensi/data-master')->group(function () {
     
     //TAHUN AKADEMIK 
     Route::resource('/tahun-akademik',TahunAkademikController::class);
+
+    // AMBIL ROLE
+    Route::get('/roles',function(){
+        $roles = Role::all();
+        return response()->json($roles);
+    });
+
+    //DATA DOSEN
+    Route::resource('/users',UserController::class);
 
     Route::get('/mata-kuliah', function () {
         return view('pages.data-umum.mata-kuliah');
@@ -82,4 +95,9 @@ Route::get("/presensi", function () {
 
 //EDIT STATUS SEMESTER
 Route::put('/semester/status', [SemesterController::class, 'gantiStatus'])->name('status.update');
+
+//test
+// route::get('/test',function(){
+//     return view('test');
+// });
 

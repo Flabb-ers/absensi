@@ -20,6 +20,7 @@
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/ruangan">Daftar Ruangan</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/semester">Daftar Semester</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/tahun-akademik">Tahun Akademik</a></li>
+                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/users">Data User</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/data-umum/mata-kuliah">Mata Kuliah</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/data-umum/kaprodi">Kaprodi</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/data-umum/wakil-direktur">Wakil

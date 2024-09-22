@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Role;
 use App\Models\Prodi;
 use App\Models\Semester;
 use App\Models\TahunAkademik;
@@ -78,6 +79,22 @@ class DatabaseSeeder extends Seeder
         ]);
         TahunAkademik::create([
             'tahun_akademik'=>'2024/2028'
+        ]);
+
+        Role::create([
+            'nama_role'=>'Dosen'
+        ]);
+        Role::create([
+            'nama_role'=>'Akademik'
+        ]);
+        Role::create([
+            'nama_role'=>'Wadir'
+        ]);
+        Role::create([
+            'nama_role'=>'Direktur'
+        ]);
+        Role::create([
+            'nama_role'=>'Kaprodi'
         ]);
     }
 }

@@ -26,17 +26,17 @@
     <!-- inject:css -->
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset("images/logoMini.png") }}" />
+    <link rel="shortcut icon" href="{{ asset('images/logoMini.png') }}" />
     <style>
         select.form-control {
-        color: black !important;
-    }
-    
-    select.form-control:focus {
-        color: black !important; 
-    }
+            color: black !important;
+        }
+
+        select.form-control:focus {
+            color: black !important;
+        }
     </style>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     {{-- jquery --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{-- sweet alert --}}
@@ -54,7 +54,7 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    
+
     <!-- container-scroller -->
     <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
@@ -80,7 +80,6 @@
     <script src="{{ asset('js/file-upload.js') }}"></script>
     {{-- <script src="{{ asset('js/Chart.roundedBarCharts.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <!-- End custom js for this page-->
 </body>
 
