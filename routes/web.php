@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\DosenController;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\TahunAkademikController;
@@ -43,10 +45,13 @@ Route::prefix('presensi/data-master')->group(function () {
     Route::resource('/semester', SemesterController::class);
     
     // PRODI
-    Route::resource('/prodi', ProdiController::class);
+    Route::resource('/program-studi', ProdiController::class);
     
     // RUANGAN
     Route::resource('/ruangan', RuanganController::class);
+    
+    // DOSEN
+    Route::resource('/data-dosen',DosenController::class);
     
     //TAHUN AKADEMIK 
     Route::resource('/tahun-akademik',TahunAkademikController::class);
@@ -57,16 +62,14 @@ Route::prefix('presensi/data-master')->group(function () {
         return response()->json($roles);
     });
 
-    //DATA DOSEN
-    Route::resource('/users',UserController::class);
+    // //DATA USER 
+    // Route::resource('/users',UserController::class);
 
     Route::get('/mata-kuliah', function () {
         return view('pages.data-umum.mata-kuliah');
     });
 
-    Route::get('/kaprodi', function () {
-        return view('pages.data-umum.kaprodi');
-    });
+
     Route::get('/wakil-direktur', function () {
         return view('pages.data-umum.wadir');
     });

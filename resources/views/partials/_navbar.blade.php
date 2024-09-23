@@ -23,10 +23,14 @@
                 <h3 class="welcome-sub-text">Absensi Mahasiswa</h3>
                 @elseif(Request::is('presensi/data-master/daftar-kelas'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Kelas</span></h1>
-                @elseif(Request::is('presensi/data-master/prodi'))
+                @elseif(Request::is('presensi/data-master/program-studi'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Prodi</span></h1>
                 @elseif(Request::is('presensi/data-master/ruangan'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Ruangan</span></h1>
+                @elseif(Request::is('presensi/data-master/data-dosen'))
+                <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Dosen</span></h1>
+                @elseif(Request::is('presensi/data-master/kaprodi'))
+                <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Kaprodi</span></h1>
                 @elseif(Request::is('data-umum/mata-kuliah'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Mata Kuliah</span></h1>
                 @elseif(Request::is('presensi/data-master/semester'))

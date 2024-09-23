@@ -1,4 +1,4 @@
-@extends('layouts.main')
+z@extends('layouts.main')
 
 @section('container')
 <div class="main-panel">

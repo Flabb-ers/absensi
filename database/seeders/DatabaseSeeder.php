@@ -5,10 +5,12 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Prodi;
 use App\Models\Semester;
 use App\Models\TahunAkademik;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -81,20 +83,5 @@ class DatabaseSeeder extends Seeder
             'tahun_akademik'=>'2024/2028'
         ]);
 
-        Role::create([
-            'nama_role'=>'Dosen'
-        ]);
-        Role::create([
-            'nama_role'=>'Akademik'
-        ]);
-        Role::create([
-            'nama_role'=>'Wadir'
-        ]);
-        Role::create([
-            'nama_role'=>'Direktur'
-        ]);
-        Role::create([
-            'nama_role'=>'Kaprodi'
-        ]);
     }
 }

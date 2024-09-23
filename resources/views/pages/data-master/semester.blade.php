@@ -41,7 +41,7 @@
                                     <thead>
                                         <tr>
                                             <th> # </th>
-                                            <th> Semester </th>
+                                            <th> Semesters </th>
                                             <th> Status </th>
                                             <th> Opsi </th>
                                         </tr>

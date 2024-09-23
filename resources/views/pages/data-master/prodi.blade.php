@@ -39,7 +39,7 @@
                                                         data-jenjang="{{ $prodi->jenjang }}" data-toggle="modal"
                                                         data-target="#editModal"><span class="mdi mdi-pencil"></span> Edit</button>
                                                     <form id="delete-form-{{ $prodi->id }}"
-                                                        action="{{ route('prodi.destroy', $prodi->id) }}" method="POST"
+                                                        action="{{ route('program-studi.destroy', $prodi->id) }}" method="POST"
                                                         style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
@@ -180,7 +180,7 @@
             $('#jenjangError').text('').removeClass('is-invalid');
 
             $.ajax({
-                url: '{{ route('prodi.store') }}',
+                url: '{{ route('program-studi.store') }}',
                 method: 'POST',
                 data: {
                     kode_prodi: kode,
@@ -265,7 +265,7 @@
 
 
             $.ajax({
-                url: '{{ route('prodi.update', ':id') }}'.replace(':id', id),
+                url: '{{ route('program-studi.update', ':id') }}'.replace(':id', id),
                 method: 'PUT',
                 data: {
                     kode_prodi: kode,
