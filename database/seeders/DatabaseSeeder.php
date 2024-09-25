@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\Semester;
 use App\Models\TahunAkademik;
@@ -81,6 +82,55 @@ class DatabaseSeeder extends Seeder
         ]);
         TahunAkademik::create([
             'tahun_akademik'=>'2024/2028'
+        ]);
+
+        Dosen::create([
+            'nama'=>'Dosen stau',
+            'nidn'=>'121456645674',
+            'jenis_kelamin'=>'Laki - Laki',
+            'no_telephone'=>'098329931710',
+            'agama'=>'islam',
+            'status'=>1,
+            'tanggal_lahir'=>'12/12/12',
+            'tempat_lahir'=>'Purworejo',
+            'email'=>'dhimdafas@gmail.com',
+            'password'=>Hash::make('password')
+        ]);
+        Dosen::create([
+            'nama'=>'Dosen tiga',
+            'nidn'=>'121456645434',
+            'jenis_kelamin'=>'Laki - Laki',
+            'no_telephone'=>'098329931710',
+            'agama'=>'islam',
+            'status'=>1,
+            'tanggal_lahir'=>'12/12/12',
+            'tempat_lahir'=>'Purworejo',
+            'email'=>'dhimdfas@gmail.com',
+            'password'=>Hash::make('password')
+        ]);
+        Dosen::create([
+            'nama'=>'Dosen empat',
+            'nidn'=>'12145632644',
+            'jenis_kelamin'=>'Laki - Laki',
+            'no_telephone'=>'098329931710',
+            'agama'=>'islam',
+            'status'=>1,
+            'tanggal_lahir'=>'12/12/12',
+            'tempat_lahir'=>'Purworejo',
+            'email'=>'dimfawsaas@gmail.com',
+            'password'=>Hash::make('password')
+        ]);
+        Dosen::create([
+            'nama'=>'Dosen dua',
+            'nidn'=>'1214562334644',
+            'jenis_kelamin'=>'Laki - Laki',
+            'no_telephone'=>'09832993172323',
+            'agama'=>'islam',
+            'status'=>1,
+            'tanggal_lahir'=>'12/12/12',
+            'tempat_lahir'=>'Purworejo',
+            'email'=>'dhiafawass@gmail.com',
+            'password'=>Hash::make('password')
         ]);
 
     }

@@ -1,15 +1,19 @@
 <?php
 
-use App\Http\Controllers\DosenController;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\WadirController;
+use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\DirekturController;
 use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TahunAkademikController;
 
 /*
@@ -50,30 +54,30 @@ Route::prefix('presensi/data-master')->group(function () {
     // RUANGAN
     Route::resource('/ruangan', RuanganController::class);
     
+    //TAHUN AKADEMIK 
+    Route::resource('/tahun-akademik',TahunAkademikController::class);
+    
     // DOSEN
     Route::resource('/data-dosen',DosenController::class);
     
-    //TAHUN AKADEMIK 
-    Route::resource('/tahun-akademik',TahunAkademikController::class);
+    // KAPRODI
+    Route::resource('/data-kaprodi',KaprodiController::class);
 
-    // AMBIL ROLE
-    Route::get('/roles',function(){
-        $roles = Role::all();
-        return response()->json($roles);
-    });
+    // WADIR
+    Route::resource('/data-wadir',WadirController::class);
 
-    // //DATA USER 
-    // Route::resource('/users',UserController::class);
-
-    Route::get('/mata-kuliah', function () {
-        return view('pages.data-umum.mata-kuliah');
-    });
-
-
-    Route::get('/wakil-direktur', function () {
-        return view('pages.data-umum.wadir');
-    });
+    // Direktur
+    Route::resource('/data-direktur',DirekturController::class);
+    
+    // MATKUK
+    Route::resource('/mata-kuliah',MatkulController::class);
 });
+
+    // MAHASISWA
+    Route::resource('/data-mahasiswa',MahasiswaController::class);
+
+
+
 
 Route::get("/jadwal-mengajar", function () {
     return view("pages.jadwal-mengajar.index");

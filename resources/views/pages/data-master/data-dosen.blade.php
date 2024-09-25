@@ -43,7 +43,6 @@
                                                 @endif
                                                 <td>{{ $dosen->email }}</td>
                                                 <td>
-
                                                     <button class="btn btn-warning btn-sm" onclick="showDetail(this)"
                                                         data-nama="{{ $dosen->nama }}" data-nidn="{{ $dosen->nidn }}"
                                                         data-jenis-kelamin="{{ $dosen->jenis_kelamin }}"
@@ -79,7 +78,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="text-center" colspan="6">Dosen belum ditambahkan</td>
+                                                <td class="text-center" colspan="7">Dosen belum ditambahkan</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -99,7 +98,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambahModalLabel">Tambah Dosen</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close close-tambah" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="tambahForm">
@@ -197,7 +196,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Edit Dosen</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close close-edit" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="editForm">
@@ -222,7 +221,7 @@
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label" for="jenis_kelamin_1Edit">
                                             <input type="radio" class="form-check-input" value="Laki-Laki"
-                                                name="jenis_kelamin" id="jenis_kelamin_1Edit">
+                                                name="jenis_kelaminEdit" id="jenis_kelamin_1Edit">
                                             Laki-Laki
                                         </label>
                                     </div>
@@ -231,7 +230,7 @@
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label" for="jenis_kelamin_2Edit">
                                             <input type="radio" class="form-check-input" value="Perempuan"
-                                                name="jenis_kelamin" id="jenis_kelamin_2Edit">
+                                                name="jenis_kelaminEdit" id="jenis_kelamin_2Edit">
                                             Perempuan
                                         </label>
                                     </div>
@@ -242,7 +241,7 @@
                             <label for="no_telephone" class="form-label">Nomor WhatsApp Aktif</label>
                             <input type="text" class="form-control" id="no_telephoneEdit" name="no_telephone"
                                 placeholder="Nomor WhatsApp">
-                            <div id="noTelephoneError" class="invalid-feedback"></div>
+                            <div id="noTelephoneErrorEdit" class="invalid-feedback"></div>
                         </div>
                         <div class="mb-3">
                             <label for="agama" class="form-label">Agama</label>
@@ -346,7 +345,8 @@
             $('#tambahForm').submit(function(e) {
                 e.preventDefault();
 
-                // Ambil data dari input
+                $('input, select, textarea').removeClass('is-invalid');
+                $('.invalid-feedback').text('');
                 let nama = $('#nama').val();
                 let nidn = $('#nidn').val();
                 let jenis_kelamin = $('input[name="jenis_kelamin"]:checked').val();
@@ -435,6 +435,7 @@
             });
 
             $(document).on('click', '.edit-button', function() {
+                $('#editForm')[0].reset();
                 let id = $(this).data('id');
                 let nama = $(this).data('nama');
                 let nidn = $(this).data('nidn');
@@ -454,10 +455,10 @@
                 $('#tanggal_lahirEdit').val(tanggal_lahir);
                 $('#tempat_lahirEdit').val(tempat_lahir);
                 $('#emailEdit').val(email);
-                $('input[name="jenis_kelamin"][value="' + jenis_kelamin + '"]').prop('checked', true);
+                $(`input[name="jenis_kelaminEdit"][value="${jenis_kelamin}"]`).prop('checked', true);
                 $('input[name="status"][value="' + status + '"]').prop('checked', true);
-
                 $('#editModal').modal('show');
+
             });
 
             $('#editForm').submit(function(e) {
@@ -465,13 +466,13 @@
                 let id = $('#dosen_id').val();
                 let nama = $('#namaEdit').val();
                 let nidn = $('#nidnEdit').val();
-                let jenis_kelamin = $('input[name="jenis_kelamin"]:checked').val();
                 let no_telephone = $('#no_telephoneEdit').val();
                 let agama = $('#agamaEdit').val();
                 let tanggal_lahir = $('#tanggal_lahirEdit').val();
                 let tempat_lahir = $('#tempat_lahirEdit').val();
                 let email = $('#emailEdit').val();
                 let status = $('input[name="status"]:checked').val();
+                let jenis_kelamin = $('input[name="jenis_kelaminEdit"]:checked').val();
 
                 $.ajax({
                     url: '{{ route('data-dosen.update', ':id') }}'.replace(':id', id),
@@ -608,5 +609,29 @@
                 }
             });
         }
+        $('.close-tambah').on('click', function() {
+            $('#tambahForm')[0].reset();
+            $('#tambahForm .form-control').removeClass('is-invalid');
+            $('#namaError').text('');
+            $('#nidnError').text('');
+            $('#noTelephoneError').text('');
+            $('#agamaError').text('');
+            $('#tanggalLahirError').text('');
+            $('#tempatLahirError').text('');
+            $('#emailError').text('');
+            $('#passwordError').text('');
+        });
+
+        $('.close-edit').on('click', function() {
+            $('#editForm')[0].reset();
+            $('#editForm .form-control').removeClass('is-invalid');
+            $('#namaErrorEdit').text('');
+            $('#nidnErrorEdit').text('');
+            $('#noTelephoneErrorEdit').text('');
+            $('#agamaErrorEdit').text('');
+            $('#tanggalLahirErrorEdit').text('');
+            $('#tempatLahirErrorEdit').text('');
+            $('#emailErrorEdit').text('');
+        });
     </script>
 @endsection

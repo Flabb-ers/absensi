@@ -23,31 +23,31 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data yang diterima
         $validateData = $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required',
             'nidn' => 'required|numeric|unique:dosens,nidn',
-            'jenis_kelamin' => 'required|string',
-            'no_telephone' => 'required|string|max:15',
+            'jenis_kelamin' => 'required',
+            'no_telephone' => 'required|string|max:15|unique:dosens,no_telephone',
             'agama' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'tempat_lahir' => 'required|string|max:255',
             'email' => 'required|email|unique:dosens,email',
-            'password' => 'required|string|min:8',
+            'password' => 'required'
         ], [
-            'nama.required' => 'Nama Dosen harus diisi.',
-            'nidn.required' => 'NIDN harus diisi.',
-            'nidn.unique' => 'NIDN sudah terdaftar.',
-            'jenis_kelamin.required' => 'Jenis kelamin harus dipilih.',
-            'no_telephone.required' => 'Nomor WhatsApp harus diisi.',
-            'agama.required' => 'Agama harus dipilih.',
-            'tanggal_lahir.required' => 'Tanggal lahir harus diisi.',
-            'tempat_lahir.required' => 'Tempat lahir harus diisi.',
-            'email.required' => 'Email harus diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah terdaftar.',
-            'password.required' => 'Password harus diisi.',
-            'password.min' => 'Password minimal 8 karakter.',
+            'nama.required' => 'Nama Dosen harus diisi',
+            'nidn.required' => 'NIDN harus diisi',
+            'nidn.unique' => 'NIDN sudah terdaftar',
+            'nidn.numeric' => 'NIDN harus angka',
+            'jenis_kelamin.required' => 'Jenis kelamin harus dipilih',
+            'no_telephone.required' => 'Nomor WhatsApp harus diisi',
+            'no_telephone.unique' => 'Nomor WhatsApp sudah terdaftar',
+            'agama.required' => 'Agama harus dipilih',
+            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
+            'tempat_lahir.required' => 'Tempat lahir harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password harus diisi'
         ]);
 
         Dosen::create([
@@ -70,55 +70,73 @@ class DosenController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Mencari dosen berdasarkan ID
         $dosen = Dosen::findOrFail($id);
 
-        // Validasi input dengan pesan kustom
         $request->validate([
             'nama' => 'required|string|max:255',
-            'nidn' => 'required|integer',
+            'nidn' => 'required|integer|unique:dosens,nidn,' . $dosen->id,
             'jenis_kelamin' => 'required|string',
-            'no_telephone' => 'required|string|max:15',
+            'no_telephone' => 'required|string|max:15|unique:dosens,no_telephone,' . $dosen->id,
             'agama' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'tempat_lahir' => 'required|string|max:255',
             'status' => 'required|in:0,1',
-            'email' => [
-                'required',
-                'email',
-                function ($attribute, $value, $fail) use ($dosen) {
-                    if ($value !== $dosen->email && Dosen::where('email', $value)->exists()) {
-                        $fail('Email sudah terdaftar.');
-                    }
-                },
-            ],
+            'email' => 'required|email|unique:dosens,email,' . $dosen->id,
         ], [
-            'nama.required' => 'Nama dosen harus diisi.',
-            'nidn.required' => 'NIDN harus diisi.',
-            'jenis_kelamin.required' => 'Jenis kelamin harus dipilih.',
-            'no_telephone.required' => 'Nomor WhatsApp harus diisi.',
-            'agama.required' => 'Agama harus dipilih.',
-            'tanggal_lahir.required' => 'Tanggal lahir harus diisi.',
-            'tempat_lahir.required' => 'Tempat lahir harus diisi.',
-            'email.required' => 'Email harus diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'status.required' => 'Status harus dipilih.',
+            'nama.required' => 'Nama dosen harus diisi',
+            'nidn.required' => 'NIDN harus diisi',
+            'nidn.unique' => 'NIDN sudah terdaftar',
+            'jenis_kelamin.required' => 'Jenis kelamin harus dipilih',
+            'no_telephone.required' => 'Nomor WhatsApp harus diisi',
+            'no_telephone.unique' => 'Nomor WhatsApp sudah terdaftar',
+            'agama.required' => 'Agama harus dipilih',
+            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
+            'tempat_lahir.required' => 'Tempat lahir harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'email.unique' => 'Email sudah digunakan',
+            'status.required' => 'Status harus dipilih',
         ]);
 
-        $dosen->update([
-            'nama' => $request->input('nama'),
-            'nidn' => $request->input('nidn'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'no_telephone' => $request->input('no_telephone'),
-            'agama' => $request->input('agama'),
-            'tanggal_lahir' => $request->input('tanggal_lahir'),
-            'tempat_lahir' => $request->input('tempat_lahir'),
-            'email' => $request->input('email'),
-            'status' => $request->input('status'),
-        ]);
+        if ($dosen->nama !== $request->nama) {
+            $dosen->nama = $request->nama;
+        }
 
-        return response()->json(['success' => 'Data dosen berhasil diperbarui.']);
+        if ($dosen->nidn !== $request->nidn) {
+            $dosen->nidn = $request->nidn;
+        }
+
+        if ($dosen->jenis_kelamin !== $request->jenis_kelamin) {
+            $dosen->jenis_kelamin = $request->jenis_kelamin;
+        }
+
+        if ($dosen->no_telephone !== $request->no_telephone) {
+            $dosen->no_telephone = $request->no_telephone;
+        }
+
+        if ($dosen->agama !== $request->agama) {
+            $dosen->agama = $request->agama;
+        }
+
+        if ($dosen->tanggal_lahir !== $request->tanggal_lahir) {
+            $dosen->tanggal_lahir = $request->tanggal_lahir;
+        }
+
+        if ($dosen->tempat_lahir !== $request->tempat_lahir) {
+            $dosen->tempat_lahir = $request->tempat_lahir;
+        }
+
+        if ($dosen->email !== $request->email) {
+            $dosen->email = $request->email;
+        }
+
+        $dosen->status = $request->status;
+        $dosen->save();
+
+        return response()->json(['success' => 'Data dosen berhasil diperbarui']);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

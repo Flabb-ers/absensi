@@ -29,10 +29,12 @@
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Ruangan</span></h1>
                 @elseif(Request::is('presensi/data-master/data-dosen'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Dosen</span></h1>
-                @elseif(Request::is('presensi/data-master/kaprodi'))
+                @elseif(Request::is('presensi/data-master/data-kaprodi'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Kaprodi</span></h1>
-                @elseif(Request::is('data-umum/mata-kuliah'))
-                <h1 class="welcome-text"><span class="text-black fw-bold">Mata Kuliah</span></h1>
+                @elseif(Request::is('presensi/data-master/data-wadir'))
+                <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Wakil Direktur</span></h1>
+                @elseif(Request::is('presensi/data-master/data-direktur'))
+                <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Direktur</span></h1>
                 @elseif(Request::is('presensi/data-master/semester'))
                 <h1 class="welcome-text"><span class="text-black fw-bold">Daftar Semester</span></h1>
                 @elseif(Request::is('presensi/data-master/tahun-akademik'))

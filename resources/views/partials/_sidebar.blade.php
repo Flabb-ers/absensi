@@ -18,15 +18,21 @@
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/daftar-kelas">Daftar Kelas</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/program-studi">Daftar Prodi</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/ruangan">Daftar Ruangan</a></li>
+                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/mata-kuliah">Mata Kuliah</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/semester">Daftar Semester</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/tahun-akademik">Tahun Akademik</a></li>
                     <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/data-dosen">Data Dosen</a></li>
-                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/data-umum/mata-kuliah">Mata Kuliah</a></li>
-                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/kaprodi">Kaprodi</a></li>
-                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/data-umum/wakil-direktur">Wakil
-                            Direktur</a></li>
+                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/data-kaprodi">Data Kaprodi</a></li>
+                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/data-direktur">Data Direktur</a></li>
+                    <li class="nav-item"> <a class="nav-link fw-bolder" href="/presensi/data-master/data-wadir">Data Wakil Direktur</a></li>
                 </ul>
             </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/data-mahasiswa">
+                <i class="menu-icon mdi mdi-account-group"></i>
+                <span class="menu-title fw-bolder">Data Mahasiswa</span>
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/jadwal-mengajar">

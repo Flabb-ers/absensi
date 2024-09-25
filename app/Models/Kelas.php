@@ -13,10 +13,20 @@ class Kelas extends Model
 
     public function prodi()
     {
-        return  $this->belongsTo(Prodi::class,'id_prodi');
+        return  $this->belongsTo(Prodi::class, 'id_prodi');
     }
     public function semester()
     {
-        return  $this->belongsTo(Semester::class,'id_semester');
+        return  $this->belongsTo(Semester::class, 'id_semester');
+    }
+
+    public function mahasiswa()
+    {
+        return  $this->hasMany(Mahasiswa::class);
+    }
+
+    public function matkul()
+    {
+        return $this->hasMany(Matkul::class);
     }
 }
